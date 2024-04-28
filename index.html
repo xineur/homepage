@@ -10,6 +10,7 @@
     <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
   </head>
   <body>
+    
     <div id="search">
       <input
         id="search-field"
@@ -28,9 +29,12 @@
         </div>
       </div>
       <div id="bookmark-container"></div>
+      <span class="text-color">这是一段中文</span>
     </div>
 
+    <script src="https://cdn.bootcdn.net/ajax/libs/js-yaml/4.1.0/js-yaml.js"></script>
     <script src="bookmarks.js"></script>
+    <script src="index.js"></script>
     <script>
       const searchUrl = "https://google.com/search?q=";
       // Search on enter key event
