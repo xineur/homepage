@@ -7,34 +7,39 @@
 
     <title>Homepage</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="header.css" />
     <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
   </head>
   <body>
-    
-    <div id="search">
-      <input
-        id="search-field"
-        type="text"
-        name="search-field"
-        onkeypress="return search(event)"
-      />
-    </div>
-    <div class="container">
-      <div id="clock"></div>
-      <div class="weather-container">
-        <div class="row">
-          <div id="weather-description" class="inline"></div>
-          <div class="inline">-</div>
-          <div id="temp" class="inline"></div>
-        </div>
+    <div class="su-wrapper">
+      <div class="su-title">
+        <span class="su-title-text" data-name="title"></span>
       </div>
-      <div id="bookmark-container"></div>
-      <span class="text-color">这是一段中文</span>
+      <div id="search">
+        <input
+          id="search-field"
+          type="text"
+          name="search-field"
+          onkeypress="return search(event)"
+        />
+      </div>
+      <div class="container">
+        <div id="clock"></div>
+        <div class="weather-container">
+          <div class="row">
+            <div id="weather-description" class="inline"></div>
+            <div class="inline">-</div>
+            <div id="temp" class="inline"></div>
+          </div>
+        </div>
+        <div id="bookmark-container"></div>
+      </div>
     </div>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/js-yaml/4.1.0/js-yaml.js"></script>
     <script src="bookmarks.js"></script>
     <script src="index.js"></script>
+
     <script>
       const searchUrl = "https://google.com/search?q=";
       // Search on enter key event

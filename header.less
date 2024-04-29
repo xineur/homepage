@@ -1,0 +1,33 @@
+@-webkit-keyframes timeline_flow {
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes timeline_flow {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.su-title {
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 60px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  .su-title-text {
+    color: transparent;
+    background: linear-gradient(90deg, var(--titleColor)) 0 0 / 200%;
+    background-clip: text;
+    -webkit-animation: timeline_flow 3s ease-in-out 0s infinite normal none
+      running;
+    animation: timeline_flow 3s ease-in-out 0s infinite normal none running;
+
+    font-size: 24px;
+    line-height: 1.6;
+    -webkit-font-smoothing: none;
+  }
+}

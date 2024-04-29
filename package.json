@@ -1,0 +1,25 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "![homepage](https://i.redd.it/cbnzq36zj3601.gif)",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-service",
+    "build": "lessc header.less header.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xineur/homepage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xineur/homepage/issues"
+  },
+  "homepage": "https://github.com/xineur/homepage#readme",
+  "devDependencies": {
+    "http-service": "^1.1.3",
+    "less": "^4.2.0"
+  }
+}

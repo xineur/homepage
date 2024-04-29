@@ -1,14 +1,73 @@
-const getWeathers = async () => {
-  // const response = await fetch("https://weather.cma.cn/api/weather/view?stationid=");
-  // console.log(response);
-  const iframe = document.querySelector("#if");
-  // const temperature = iframe.contentWindow.document.querySelector(".temperatrue").innerText;
-  // const city = iframe.contentWindow.document.querySelector(".city_name .text-left").innerText;
-  
-  // console.log(city, "-", temperature);
-  console.log(iframe)
-  // https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=Rvx0jYST6SR0e0RGEpDsRkHfQ4RJb7zv
-  // https://widget-api.qweather.net/s6/plugin/location?key=e188fb70724d40348d7be2cb429be3ad&qweather_mark=piPgnFjjUCQIwUSkCDl0O66UOD3rxP4P&lang=zh
-};
+function $(name) {
+  return document.querySelector(name);
+}
 
-getWeathers();
+// read and set yaml;
+(async function () {
+  const yaml = window.jsyaml;
+
+  try {
+    const source = await (await fetch("data.yaml")).text();
+    const data = yaml.load(source);
+    console.log(data);
+    if (data["title"].name) $('[data-name="title"]').innerText = data["title"].name;
+  } catch (e) {
+    // i know
+    throw e;
+  }
+})();
+
+// monitor and set title color
+(function () {
+  const getTextColor = (hex) => {
+    if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex)) {
+      throw new Error("Invalid hexadecimal color code");
+    }
+
+    let r = parseInt(hex.slice(1, 3), 16),
+      g = parseInt(hex.slice(3, 5), 16),
+      b = parseInt(hex.slice(5), 16);
+
+    let colorArray = [];
+
+    for (let i = 0; i < 4; i++) {
+      let newR = Math.floor(r + ((255 - r) / 4) * i),
+        newG = Math.floor(g + ((255 - g) / 4) * i),
+        newB = Math.floor(b + ((255 - b) / 4) * i);
+
+      let color =
+        "#" +
+        ((1 << 24) | (newR << 16) | (newG << 8) | newB).toString(16).slice(1);
+      colorArray.push(color);
+    }
+
+    return colorArray;
+  };
+
+  const root = document.querySelector(":root");
+  const rootStyle = getComputedStyle(root);
+
+  let initialValue = rootStyle.getPropertyValue("--bg").trim();
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "style"
+      ) {
+        let newValue = rootStyle.getPropertyValue("--bg").trim();
+        if (newValue !== initialValue) {
+          initialValue = newValue;
+          const textColor = getTextColor(initialValue);
+          console.log(textColor);
+          document.documentElement.style.setProperty(
+            "--titleColor",
+            textColor.join(", ")
+          );
+        }
+      }
+    });
+  });
+
+  observer.observe(root, { attributes: true });
+})();

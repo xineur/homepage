@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
 
 @font-face {
   font-family: ZpixReviewOnline;
@@ -12,12 +12,28 @@
   --containerBg: #272727;
   --searchBg: var(--containerBg);
   --scrollbarColor: #3f3f3f;
-  --fontFamily: 'Roboto Mono', monospace;
+  --fontFamily: "Roboto Mono", monospace;
+  --zpixFontFamily: ZpixReviewLocal, ZpixReviewOnline, sans-serif;
+  --margin: 8px;
+  --titleColor: #FFCBF2, #E9D2F4, #D3D3D3, #FFFFFF
 }
 
 body {
-  background-color: var(--bg);
   margin: 0px;
+  font-feature-settings: "tnum";
+  font-family: var(--zpixFontFamily);
+  background: transparent;
+}
+
+.su-wrapper {
+  background-color: var(--bg);
+  box-sizing: border-box;
+  border-radius: 6px;
+  position: fixed;
+  top: var(--margin);
+  right: var(--margin);
+  bottom: var(--margin);
+  left: var(--margin);
 }
 
 .container {
@@ -152,21 +168,4 @@ body {
 }
 .bookmark:hover {
   color: var(--fg);
-}
-@keyframes timeline_flow {
-  to {
-      background-position: -200% 0
-  }
-}
-.text-color {
-  /* background: linear-gradient(90deg, #47cf73, #ffdd40, #ae63e4, #0ebeff, #47cf73) 0 0 / 200%; */
-  background: linear-gradient(-45deg, #fff566, #a8ffca, #ffad61, #ff857a, #fff, #ff5cc9, #6279ea, #66ffe6) 0 0 / 200%;
-  background-clip: text;
-  animation: timeline_flow 5s ease-in-out 0s infinite normal none running;
-  
-  font-size: 24px;
-  line-height: 1.6;
-  font-family: ZpixReviewLocal, ZpixReviewOnline, sans-serif;
-  -webkit-font-smoothing: none;
-  font-feature-settings: 'tnum';
 }
