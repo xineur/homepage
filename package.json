@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "http-service",
-    "build": "lessc header.less header.css"
+    "build": "lessc header.less header.css && lessc style.less style.css"
   },
   "repository": {
     "type": "git",

@@ -10,7 +10,18 @@ function $(name) {
     const source = await (await fetch("data.yaml")).text();
     const data = yaml.load(source);
     console.log(data);
-    if (data["title"].name) $('[data-name="title"]').innerText = data["title"].name;
+    if (data["title"].name)
+      $('[data-name="title"]').innerText = data["title"].name;
+
+    // background
+    const background = data["background"];
+    if (background) {
+      if (background.url) {
+        $(
+          ".su-wrapper"
+        ).style.backgroundImage = `linear-gradient(var(--bg), var(--bg)), url("${background.url}")`;
+      }
+    }
   } catch (e) {
     // i know
     throw e;
@@ -71,3 +82,50 @@ function $(name) {
 
   observer.observe(root, { attributes: true });
 })();
+
+// Get current time and format
+(function () {
+  function getTime() {
+    let date = new Date(),
+      min = date.getMinutes(),
+      sec = date.getSeconds(),
+      hour = date.getHours();
+
+    return (
+      "" + (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min)
+    );
+  }
+
+  // Set up the clock
+  document.getElementById("clock").innerHTML = getTime();
+  // Set clock interval to tick clock
+  setInterval(() => {
+    document.getElementById("clock").innerHTML = getTime();
+  }, 10000);
+})();
+
+// search
+(function () {
+  document.addEventListener("keyup", (event) => {
+    if ('search-menu' === document.activeElement.attributes["data-name"]?.nodeValue)
+      return;
+    if (event.keyCode == 32) {
+      // Spacebar code to open search
+      document.getElementById("search").style.display = "flex";
+      $('.search-field[data-name="search-global"]').focus();
+    } else if (event.keyCode == 27) {
+      $('.search-field[data-name="search-global"]').value = "";
+      $('.search-field[data-name="search-global"]').blur();
+      document.getElementById("search").style.display = "none";
+    }
+  });
+})();
+
+// Search on enter key event
+function search(e) {
+  const searchUrl = "https://google.com/search?q=";
+  if (e.keyCode == 13) {
+    var val = $('.search-field[data-name="search-global"]').value;
+    window.open(searchUrl + val);
+  }
+}

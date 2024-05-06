@@ -15,8 +15,10 @@
   left: 0;
   top: 0;
   line-height: 60px;
-  box-sizing: border-box;
   padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
 }
 .su-title .su-title-text {
   color: transparent;
@@ -24,7 +26,26 @@
   background-clip: text;
   -webkit-animation: timeline_flow 3s ease-in-out 0s infinite normal none running;
   animation: timeline_flow 3s ease-in-out 0s infinite normal none running;
-  font-size: 24px;
-  line-height: 1.6;
+  font-size: 1.5rem;
   -webkit-font-smoothing: none;
+  font-weight: 600;
+}
+.su-title #clock {
+  color: var(--fg);
+}
+.su-title .su-input-container {
+  position: relative;
+  width: 200px;
+  margin-right: 20px;
+}
+.su-title .su-input-container input.su-input-search {
+  width: 100%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  color: var(--fg);
 }
