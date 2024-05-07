@@ -1,6 +1,30 @@
-function $(name) {
-  return document.querySelector(name);
-}
+// load font
+(async function () {
+  let font = new FontFace(
+    "zpix",
+    "url(https://zpix.now.sh/zpix.woff2?v2021-03-21)"
+  );
+
+  const nowTime = new Date().getTime();
+  await font.load().then(function (loadedFont) {
+    document.fonts.add(loadedFont);
+
+    document.documentElement.style.setProperty(
+      "--zpixFontFamily",
+      "ZpixReviewLocal, ZpixReviewOnline, sans-serif"
+    );
+  });
+
+  const delayTime = new Date().getTime() - nowTime;
+
+  if (delayTime > 500) {
+    await sleep(delayTime - 500);
+  }
+
+  $(".su-shade").style.opacity = 0;
+  await sleep(300);
+  $(".su-shade").style.display = "none";
+})();
 
 // read and set yaml;
 (async function () {
@@ -70,7 +94,6 @@ function $(name) {
         if (newValue !== initialValue) {
           initialValue = newValue;
           const textColor = getTextColor(initialValue);
-          console.log(textColor);
           document.documentElement.style.setProperty(
             "--titleColor",
             textColor.join(", ")
@@ -107,7 +130,10 @@ function $(name) {
 // search
 (function () {
   document.addEventListener("keyup", (event) => {
-    if ('search-menu' === document.activeElement.attributes["data-name"]?.nodeValue)
+    if (
+      "search-menu" ===
+      document.activeElement.attributes["data-name"]?.nodeValue
+    )
       return;
     if (event.keyCode == 32) {
       // Spacebar code to open search

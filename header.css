@@ -32,6 +32,7 @@
 }
 .su-title #clock {
   color: var(--fg);
+  font-weight: 500;
 }
 .su-title .su-input-container {
   position: relative;

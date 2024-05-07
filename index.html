@@ -11,14 +11,22 @@
     <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
   </head>
   <body>
+    <div class="su-shade">
+      <div class="su-loading">Loading...</div>
+    </div>
     <div class="su-wrapper">
       <ul class="su-title">
         <li class="su-title-text" data-name="title"></li>
         <li class="f-1"></li>
         <div class="su-input-container">
-          <input type="text" class="su-input-search" data-name="search-menu" placeholder="搜索..."/>
+          <input
+            type="text"
+            class="su-input-search"
+            data-name="search-menu"
+            placeholder="搜索..."
+          />
           <i class="su-input-icon"></i>
-      </div>
+        </div>
         <li id="clock" class="su-title-text"></li>
       </ul>
       <div id="search">
@@ -32,7 +40,7 @@
     </div>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/js-yaml/4.1.0/js-yaml.js"></script>
-    <script src="bookmarks.js"></script>
+    <script src="util.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
